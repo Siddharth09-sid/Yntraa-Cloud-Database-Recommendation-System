@@ -1,0 +1,1205 @@
+{
+  "_readme": "Seed config for the Yntraa MDBaaS recommender. Two sections: 'catalog' (one entry per engine family, each with opensource/enterprise editions and their feature diffs) and 'questionnaire' (questions, options, and per-family weights, -3 to +5 scale). To add a new database: add one catalog entry + one weight value per existing question option (default 0 where not applicable). The scoring engine code should never reference a family name directly — it only ever iterates this file.",
+  "catalog": {
+    "mysql": {
+      "display_name": "MySQL",
+      "category": "relational",
+      "editions": {
+        "opensource": {
+          "label": "MySQL Open Source",
+          "unit": "Per Core",
+          "list_price_inr": 4000,
+          "features": [
+            "InnoDB storage engine",
+            "Replication",
+            "Native VECTOR type (9.x)"
+          ]
+        },
+        "enterprise": {
+          "label": "MySQL Enterprise",
+          "unit": "Per Core",
+          "list_price_inr": 6000,
+          "features": [
+            "Enterprise Backup",
+            "Enterprise Firewall",
+            "Audit",
+            "TDE",
+            "Thread Pool",
+            "Enterprise Monitor"
+          ]
+        }
+      },
+      "tags": [
+        "oltp",
+        "web",
+        "sql_wire_compatible"
+      ]
+    },
+    "postgresql": {
+      "display_name": "PostgreSQL",
+      "category": "relational",
+      "editions": {
+        "opensource": {
+          "label": "PostgreSQL Open Source",
+          "unit": "Per Core",
+          "list_price_inr": 3600,
+          "features": [
+            "JSONB",
+            "PostGIS geospatial",
+            "pgvector",
+            "Full-text search"
+          ]
+        },
+        "enterprise": {
+          "label": "PostgreSQL Enterprise (EDB)",
+          "unit": "Per Core",
+          "list_price_inr": 25000,
+          "features": [
+            "Oracle PL/SQL compatibility",
+            "TDE",
+            "Advanced auditing",
+            "Failover Manager",
+            "SQL Profiler",
+            "Vendor SLA support"
+          ]
+        }
+      },
+      "tags": [
+        "oltp",
+        "olap_light",
+        "json",
+        "geospatial",
+        "vector",
+        "oracle_migration"
+      ]
+    },
+    "mssql": {
+      "display_name": "Microsoft SQL Server",
+      "category": "relational",
+      "editions": {
+        "standard": {
+          "label": "MSSQL Standard",
+          "unit": "Per Core",
+          "list_price_inr": 16800,
+          "features": [
+            "Basic Always On AG (limited replicas)",
+            "Standard compression"
+          ]
+        },
+        "enterprise": {
+          "label": "MSSQL Enterprise",
+          "unit": "Per Core",
+          "list_price_inr": 53000,
+          "features": [
+            "Unlimited Always On AG replicas",
+            "Full In-Memory OLTP",
+            "Advanced compression",
+            "Native vector search (2025+)",
+            "Transparent Data Encryption (TDE)",
+            "SQL Server Audit (native auditing)",
+            "Row-Level Security & Dynamic Data Masking"
+          ]
+        }
+      },
+      "tags": [
+        "oltp",
+        "bi_reporting",
+        "microsoft_ecosystem"
+      ]
+    },
+    "mariadb": {
+      "display_name": "MariaDB",
+      "category": "relational",
+      "editions": {
+        "opensource": {
+          "label": "MariaDB Open Source",
+          "unit": "Per Core",
+          "list_price_inr": 4000,
+          "features": [
+            "ColumnStore analytics engine",
+            "Native VECTOR type (11.7+)"
+          ]
+        },
+        "enterprise": {
+          "label": "MariaDB Enterprise",
+          "unit": "Per Core",
+          "list_price_inr": 12000,
+          "features": [
+            "MaxScale intelligent routing",
+            "Enhanced auditing",
+            "Enterprise encryption"
+          ]
+        }
+      },
+      "tags": [
+        "oltp",
+        "mysql_wire_compatible",
+        "analytics_hybrid"
+      ]
+    },
+    "mongodb": {
+      "display_name": "MongoDB",
+      "category": "document",
+      "editions": {
+        "opensource": {
+          "label": "MongoDB Open Source",
+          "unit": "Per GB",
+          "list_price_inr": 500,
+          "features": [
+            "Sharding",
+            "Aggregation pipeline",
+            "Atlas Vector Search"
+          ]
+        },
+        "enterprise": {
+          "label": "MongoDB Enterprise",
+          "unit": "Per GB",
+          "list_price_inr": 2500,
+          "features": [
+            "LDAP/Kerberos auth",
+            "Queryable Encryption",
+            "Native auditing",
+            "In-memory storage engine"
+          ]
+        }
+      },
+      "tags": [
+        "document",
+        "flexible_schema",
+        "vector"
+      ]
+    },
+    "redis": {
+      "display_name": "Redis",
+      "category": "in_memory_kv",
+      "editions": {
+        "opensource": {
+          "label": "Redis Open Source",
+          "unit": "Per GB",
+          "list_price_inr": 550,
+          "features": [
+            "Sub-ms latency",
+            "Redis 8 Query Engine (vector/full-text/JSON)",
+            "Pub/Sub"
+          ]
+        },
+        "enterprise": {
+          "label": "Redis Enterprise",
+          "unit": "Per GB",
+          "list_price_inr": 10000,
+          "features": [
+            "Active-Active geo-replication (CRDT)",
+            "Auto-tiering (RAM+flash)",
+            "RBAC",
+            "Multi-tenancy"
+          ]
+        }
+      },
+      "tags": [
+        "cache",
+        "session",
+        "key_value",
+        "vector",
+        "low_latency"
+      ]
+    },
+    "cassandra": {
+      "display_name": "Apache Cassandra",
+      "category": "wide_column",
+      "editions": {
+        "opensource": {
+          "label": "Cassandra Open Source",
+          "unit": "Per Core",
+          "list_price_inr": 1600,
+          "features": [
+            "Masterless multi-DC replication",
+            "Native vector ANN index (5.0+)"
+          ]
+        },
+        "enterprise": {
+          "label": "Cassandra Enterprise",
+          "unit": "Per Core",
+          "list_price_inr": 20000,
+          "features": [
+            "Advanced security",
+            "Spark/analytics integration",
+            "Graph support"
+          ]
+        }
+      },
+      "tags": [
+        "wide_column",
+        "iot",
+        "time_series",
+        "high_write",
+        "multi_dc"
+      ]
+    },
+    "scylladb": {
+      "display_name": "ScyllaDB",
+      "category": "wide_column",
+      "editions": {
+        "enterprise": {
+          "label": "ScyllaDB Enterprise",
+          "unit": "Per Core Per TB",
+          "list_price_inr": 16000,
+          "features": [
+            "Shard-per-core C++ engine",
+            "GA Vector Search (~1B vectors, sub-2ms P99)",
+            "DynamoDB-compatible Alternator API",
+            "Lower P99 latency than Cassandra at same throughput"
+          ]
+        }
+      },
+      "tags": [
+        "wide_column",
+        "real_time_ai",
+        "ultra_low_latency",
+        "vector",
+        "cassandra_compatible",
+        "dynamodb_compatible"
+      ]
+    },
+    "opensearch": {
+      "display_name": "OpenSearch",
+      "category": "search_analytics",
+      "editions": {
+        "opensource": {
+          "label": "OpenSearch Open Source",
+          "unit": "Per GB",
+          "list_price_inr": 380,
+          "features": [
+            "Full-text search",
+            "k-NN vector plugin",
+            "Observability dashboards"
+          ]
+        }
+      },
+      "tags": [
+        "search",
+        "logging",
+        "observability",
+        "vector"
+      ]
+    },
+    "elasticsearch": {
+      "display_name": "Elasticsearch",
+      "category": "search_analytics",
+      "editions": {
+        "enterprise": {
+          "label": "Elasticsearch Enterprise",
+          "unit": "Per GB",
+          "list_price_inr": 3000,
+          "features": [
+            "ELSER semantic search model",
+            "ML anomaly detection",
+            "Official Elastic support/SLA",
+            "Mature Kibana ecosystem"
+          ]
+        }
+      },
+      "tags": [
+        "search",
+        "logging",
+        "observability",
+        "vector",
+        "security_analytics"
+      ]
+    },
+    "hadoop": {
+      "display_name": "Apache Hadoop",
+      "category": "batch_data_lake",
+      "editions": {
+        "opensource": {
+          "label": "Hadoop Open Source",
+          "unit": "Per Core",
+          "list_price_inr": 700,
+          "features": [
+            "HDFS distributed storage",
+            "MapReduce/Hive/Spark ecosystem",
+            "Petabyte-scale batch processing"
+          ]
+        }
+      },
+      "tags": [
+        "batch",
+        "etl",
+        "data_lake",
+        "not_low_latency"
+      ],
+      "routing_note": "Not part of general weighted scoring pool — reached via Q12 early-branch, see design doc §6."
+    },
+    "couchbase": {
+      "display_name": "Couchbase",
+      "category": "multi_model",
+      "editions": {
+        "opensource": {
+          "label": "Couchbase Open Source",
+          "unit": "Per Core",
+          "list_price_inr": 3500,
+          "features": [
+            "Key-value + document + SQL++ (N1QL)",
+            "Native vector search (7.6+)",
+            "In-memory caching tier"
+          ]
+        },
+        "enterprise": {
+          "label": "Couchbase Enterprise",
+          "unit": "Per Core",
+          "list_price_inr": 18000,
+          "features": [
+            "Cross-datacenter replication (XDCR)",
+            "Mobile Sync Gateway (offline-first)",
+            "Advanced RBAC/auditing"
+          ]
+        }
+      },
+      "tags": [
+        "multi_model",
+        "mobile_edge",
+        "offline_sync",
+        "vector",
+        "key_value"
+      ]
+    }
+  },
+  "questionnaire": {
+    "Q1_workload_shape": {
+      "type": "single_select",
+      "weights": {
+        "oltp_transactional": {
+          "mysql": 4,
+          "postgresql": 4,
+          "mssql": 4,
+          "mariadb": 4,
+          "mongodb": 1,
+          "redis": 0,
+          "cassandra": -1,
+          "scylladb": -1,
+          "opensearch": -3,
+          "elasticsearch": -3,
+          "hadoop": -3,
+          "couchbase": 1
+        },
+        "content_catalog_flexible": {
+          "mysql": 0,
+          "postgresql": 2,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 5,
+          "redis": 0,
+          "cassandra": 1,
+          "scylladb": 1,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": -3,
+          "couchbase": 3
+        },
+        "cache_session_realtime": {
+          "mysql": -2,
+          "postgresql": -2,
+          "mssql": -2,
+          "mariadb": -2,
+          "mongodb": -1,
+          "redis": 5,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": -2,
+          "elasticsearch": -2,
+          "hadoop": -3,
+          "couchbase": 2
+        },
+        "search_logging_observability": {
+          "mysql": -2,
+          "postgresql": 1,
+          "mssql": -2,
+          "mariadb": -2,
+          "mongodb": -1,
+          "redis": -1,
+          "cassandra": -1,
+          "scylladb": -1,
+          "opensearch": 5,
+          "elasticsearch": 5,
+          "hadoop": -1,
+          "couchbase": 0
+        },
+        "time_series_iot_high_write": {
+          "mysql": -1,
+          "postgresql": 1,
+          "mssql": -1,
+          "mariadb": -1,
+          "mongodb": 1,
+          "redis": 1,
+          "cassandra": 5,
+          "scylladb": 5,
+          "opensearch": 1,
+          "elasticsearch": 1,
+          "hadoop": 0,
+          "couchbase": 1
+        },
+        "analytics_bi_dw": {
+          "mysql": 0,
+          "postgresql": 4,
+          "mssql": 4,
+          "mariadb": 2,
+          "mongodb": 0,
+          "redis": -2,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 2,
+          "elasticsearch": 2,
+          "hadoop": 3,
+          "couchbase": 0
+        },
+        "batch_etl_data_lake": {
+          "mysql": -3,
+          "postgresql": -2,
+          "mssql": -2,
+          "mariadb": -2,
+          "mongodb": -2,
+          "redis": -3,
+          "cassandra": -2,
+          "scylladb": -2,
+          "opensearch": -2,
+          "elasticsearch": -2,
+          "hadoop": 5,
+          "couchbase": -2
+        },
+        "mobile_edge_offline_sync": {
+          "mysql": -2,
+          "postgresql": -2,
+          "mssql": -2,
+          "mariadb": -2,
+          "mongodb": 1,
+          "redis": -1,
+          "cassandra": -2,
+          "scylladb": -2,
+          "opensearch": -2,
+          "elasticsearch": -2,
+          "hadoop": -3,
+          "couchbase": 5
+        },
+        "ai_rag_vector_core": {
+          "mysql": 0,
+          "postgresql": 5,
+          "mssql": 1,
+          "mariadb": 1,
+          "mongodb": 4,
+          "redis": 3,
+          "cassandra": 2,
+          "scylladb": 3,
+          "opensearch": 4,
+          "elasticsearch": 4,
+          "hadoop": -3,
+          "couchbase": 2
+        },
+        "htap_hybrid_oltp_olap": {
+          "mysql": 0,
+          "postgresql": 2,
+          "mssql": 2,
+          "mariadb": 4,
+          "mongodb": -1,
+          "redis": -2,
+          "cassandra": -1,
+          "scylladb": -1,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": -1
+        }
+      },
+      "importance": 3
+    },
+    "Q2_data_structure": {
+      "type": "single_select",
+      "weights": {
+        "structured_relational_joins": {
+          "mysql": 4,
+          "postgresql": 4,
+          "mssql": 4,
+          "mariadb": 4,
+          "mongodb": -2,
+          "redis": -3,
+          "cassandra": -2,
+          "scylladb": -2,
+          "opensearch": -2,
+          "elasticsearch": -2,
+          "hadoop": 0,
+          "couchbase": -1
+        },
+        "semi_structured_json": {
+          "mysql": 1,
+          "postgresql": 3,
+          "mssql": 1,
+          "mariadb": 1,
+          "mongodb": 5,
+          "redis": 1,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 1,
+          "elasticsearch": 1,
+          "hadoop": 0,
+          "couchbase": 3
+        },
+        "key_value": {
+          "mysql": -1,
+          "postgresql": -1,
+          "mssql": -1,
+          "mariadb": -1,
+          "mongodb": 1,
+          "redis": 5,
+          "cassandra": 1,
+          "scylladb": 2,
+          "opensearch": -2,
+          "elasticsearch": -2,
+          "hadoop": -2,
+          "couchbase": 3
+        },
+        "wide_column_sparse": {
+          "mysql": -2,
+          "postgresql": -1,
+          "mssql": -2,
+          "mariadb": -1,
+          "mongodb": 0,
+          "redis": -1,
+          "cassandra": 5,
+          "scylladb": 5,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 1,
+          "couchbase": 0
+        },
+        "unstructured_text_logs": {
+          "mysql": -2,
+          "postgresql": 0,
+          "mssql": -2,
+          "mariadb": -2,
+          "mongodb": 0,
+          "redis": -2,
+          "cassandra": -1,
+          "scylladb": -1,
+          "opensearch": 5,
+          "elasticsearch": 5,
+          "hadoop": 2,
+          "couchbase": -1
+        },
+        "documents_files_media": {
+          "mysql": -1,
+          "postgresql": 1,
+          "mssql": 0,
+          "mariadb": -1,
+          "mongodb": 4,
+          "redis": -2,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 3,
+          "elasticsearch": 3,
+          "hadoop": 4,
+          "couchbase": 3
+        }
+      },
+      "importance": 2
+    },
+    "Q4_consistency": {
+      "type": "single_select",
+      "weights": {
+        "strict_acid": {
+          "mysql": 3,
+          "postgresql": 3,
+          "mssql": 3,
+          "mariadb": 3,
+          "mongodb": 0,
+          "redis": -1,
+          "cassandra": -2,
+          "scylladb": -2,
+          "opensearch": -2,
+          "elasticsearch": -2,
+          "hadoop": -2,
+          "couchbase": 0
+        },
+        "eventual_ok": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 1,
+          "redis": 1,
+          "cassandra": 2,
+          "scylladb": 2,
+          "opensearch": 1,
+          "elasticsearch": 1,
+          "hadoop": 1,
+          "couchbase": 1
+        },
+        "mixed": {
+          "mysql": 1,
+          "postgresql": 1,
+          "mssql": 1,
+          "mariadb": 1,
+          "mongodb": 1,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 1
+        }
+      }
+    },
+    "Q5_latency": {
+      "type": "single_select",
+      "weights": {
+        "sub_millisecond": {
+          "mysql": -1,
+          "postgresql": -1,
+          "mssql": -1,
+          "mariadb": -1,
+          "mongodb": 0,
+          "redis": 5,
+          "cassandra": 1,
+          "scylladb": 3,
+          "opensearch": -1,
+          "elasticsearch": -1,
+          "hadoop": -3,
+          "couchbase": 2
+        },
+        "low_ms": {
+          "mysql": 2,
+          "postgresql": 2,
+          "mssql": 2,
+          "mariadb": 2,
+          "mongodb": 2,
+          "redis": 2,
+          "cassandra": 2,
+          "scylladb": 2,
+          "opensearch": 2,
+          "elasticsearch": 2,
+          "hadoop": -2,
+          "couchbase": 2
+        },
+        "seconds_batch_ok": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 0,
+          "redis": -1,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 4,
+          "couchbase": 0
+        }
+      }
+    },
+    "Q6_scale": {
+      "type": "single_select",
+      "weights": {
+        "small_under_100gb": {
+          "mysql": 2,
+          "postgresql": 2,
+          "mssql": 2,
+          "mariadb": 2,
+          "mongodb": 1,
+          "redis": 1,
+          "cassandra": 0,
+          "scylladb": -1,
+          "opensearch": 1,
+          "elasticsearch": 1,
+          "hadoop": -2,
+          "couchbase": 1
+        },
+        "medium_few_tb": {
+          "mysql": 1,
+          "postgresql": 1,
+          "mssql": 1,
+          "mariadb": 1,
+          "mongodb": 2,
+          "redis": 1,
+          "cassandra": 2,
+          "scylladb": 1,
+          "opensearch": 2,
+          "elasticsearch": 2,
+          "hadoop": 0,
+          "couchbase": 2
+        },
+        "large_multi_tb": {
+          "mysql": 0,
+          "postgresql": 1,
+          "mssql": 1,
+          "mariadb": 0,
+          "mongodb": 2,
+          "redis": 0,
+          "cassandra": 3,
+          "scylladb": 3,
+          "opensearch": 2,
+          "elasticsearch": 2,
+          "hadoop": 2,
+          "couchbase": 2
+        },
+        "massive_pb_scale": {
+          "mysql": -2,
+          "postgresql": -1,
+          "mssql": -1,
+          "mariadb": -2,
+          "mongodb": 1,
+          "redis": -2,
+          "cassandra": 3,
+          "scylladb": 3,
+          "opensearch": 1,
+          "elasticsearch": 1,
+          "hadoop": 5,
+          "couchbase": 1
+        }
+      }
+    },
+    "Q7_geo_availability": {
+      "type": "single_select",
+      "weights": {
+        "single_region_ha": {
+          "mysql": 2,
+          "postgresql": 2,
+          "mssql": 2,
+          "mariadb": 2,
+          "mongodb": 2,
+          "redis": 2,
+          "cassandra": 1,
+          "scylladb": 1,
+          "opensearch": 2,
+          "elasticsearch": 2,
+          "hadoop": 1,
+          "couchbase": 2
+        },
+        "multi_region_failover": {
+          "mysql": 1,
+          "postgresql": 2,
+          "mssql": 2,
+          "mariadb": 1,
+          "mongodb": 2,
+          "redis": 1,
+          "cassandra": 3,
+          "scylladb": 3,
+          "opensearch": 1,
+          "elasticsearch": 1,
+          "hadoop": 0,
+          "couchbase": 2
+        },
+        "multi_region_active_active": {
+          "mysql": -1,
+          "postgresql": -1,
+          "mssql": -2,
+          "mariadb": 0,
+          "mongodb": 1,
+          "redis": 2,
+          "cassandra": 4,
+          "scylladb": 3,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": -1,
+          "couchbase": 3
+        }
+      },
+      "note": "Active-active strongly favors Redis Enterprise / Couchbase Enterprise / Cassandra/Scylla — feeds the Enterprise edition modifier, see design doc §5."
+    },
+    "Q8_vector_search": {
+      "type": "single_select",
+      "weights": {
+        "yes_core": {
+          "mysql": 0,
+          "postgresql": 4,
+          "mssql": 1,
+          "mariadb": 1,
+          "mongodb": 3,
+          "redis": 3,
+          "cassandra": 2,
+          "scylladb": 3,
+          "opensearch": 4,
+          "elasticsearch": 4,
+          "hadoop": -3,
+          "couchbase": 2
+        },
+        "yes_secondary": {
+          "mysql": 1,
+          "postgresql": 2,
+          "mssql": 1,
+          "mariadb": 1,
+          "mongodb": 1,
+          "redis": 1,
+          "cassandra": 0,
+          "scylladb": 1,
+          "opensearch": 1,
+          "elasticsearch": 1,
+          "hadoop": 0,
+          "couchbase": 1
+        },
+        "no": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        }
+      }
+    },
+    "Q10_compliance_edition_modifier": {
+      "type": "single_select",
+      "note": "Sets the enterprise-requirement flag used in the §5 trade-off logic (forces_enterprise_if) AND, as of this fix, also carries real (modest) per-family weights below. Previously this question had zero effect on WHICH family got recommended — only on which edition of an already-chosen family — which silently contradicted this file's own substitution_groups.search_analytics note (which already claimed Q10 differentiates OpenSearch vs Elasticsearch). Weights are grounded only in each family's own catalog `features` text (native auditing, RBAC, LDAP/Kerberos, TDE/encryption, or an explicit compliance/support-SLA claim) — kept small (max ±3) so compliance nudges the ranking as a secondary signal, the way Q14 (ops comfort) does, rather than overriding the primary workload-fit questions (Q1/Q2).",
+      "forces_enterprise_if": "regulated_industry",
+      "weights": {
+        "standard": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        },
+        "advanced_auditing": {
+          "mysql": 1,
+          "postgresql": 2,
+          "mssql": 1,
+          "mariadb": 1,
+          "mongodb": 2,
+          "redis": 1,
+          "cassandra": 1,
+          "scylladb": 0,
+          "opensearch": -1,
+          "elasticsearch": 1,
+          "hadoop": 0,
+          "couchbase": 2
+        },
+        "regulated_industry": {
+          "mysql": 2,
+          "postgresql": 3,
+          "mssql": 2,
+          "mariadb": 2,
+          "mongodb": 3,
+          "redis": 1,
+          "cassandra": 1,
+          "scylladb": 0,
+          "opensearch": -2,
+          "elasticsearch": 2,
+          "hadoop": 0,
+          "couchbase": 3
+        }
+      }
+    },
+    "Q13_budget_modifier": {
+      "type": "single_select",
+      "note": "Mostly sets the budget posture for the open-source vs Enterprise edition advice. It also nudges the ranking slightly when the user is cost-sensitive: engines with a free open-source edition +1, engines that only come as a paid edition here (MSSQL, ScyllaDB, Elasticsearch) -2.",
+      "weights": {
+        "cost_sensitive": {
+          "mysql": 1,
+          "postgresql": 1,
+          "mssql": -2,
+          "mariadb": 1,
+          "mongodb": 1,
+          "redis": 1,
+          "cassandra": 1,
+          "scylladb": -2,
+          "opensearch": 1,
+          "elasticsearch": -2,
+          "hadoop": 1,
+          "couchbase": 1
+        },
+        "balanced": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        },
+        "premium": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        }
+      }
+    },
+    "hard_filters": {
+      "Q12_batch_etl_yes": "bypass general scoring entirely, recommend hadoop directly (see design doc §6) — this is a legitimate category branch, not a preference elimination: Hadoop isn't a queryable low-latency engine at all, so it was never a competitor in the same pool."
+    },
+    "Q9_ecosystem_compatibility": {
+      "type": "multi_select",
+      "weights": {
+        "oracle_pl_sql_compatibility_needed": {
+          "mysql": -1,
+          "postgresql": 5,
+          "mssql": -1,
+          "mariadb": -1,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0,
+          "_note": "Primarily an Enterprise-edition (EDB) capability — feeds the edition modifier, not just the family score."
+        },
+        "mysql_wire_protocol_compatibility": {
+          "mysql": 4,
+          "postgresql": 0,
+          "mssql": -1,
+          "mariadb": 4,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        },
+        "microsoft_dotnet_ecosystem": {
+          "mysql": -1,
+          "postgresql": 0,
+          "mssql": 5,
+          "mariadb": -1,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        },
+        "cassandra_cql_compatibility": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 5,
+          "scylladb": 4,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        },
+        "dynamodb_api_compatibility": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": -2,
+          "scylladb": 5,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        },
+        "prefer_vendor_independent_governance": {
+          "mysql": -1,
+          "postgresql": 2,
+          "mssql": -2,
+          "mariadb": 2,
+          "mongodb": -1,
+          "redis": -1,
+          "cassandra": 2,
+          "scylladb": -1,
+          "opensearch": 2,
+          "elasticsearch": -1,
+          "hadoop": 1,
+          "couchbase": -1,
+          "_note": "Models real governance concerns: MySQL/MSSQL vendor-owned; Elastic/MongoDB/Couchbase/Redis have had source-available or dual-license controversies; MariaDB Foundation, PostgreSQL, OpenSearch, Cassandra are community/foundation-governed Apache-style projects."
+        },
+        "no_ecosystem_constraint": {
+          "mysql": 0,
+          "postgresql": 0,
+          "mssql": 0,
+          "mariadb": 0,
+          "mongodb": 0,
+          "redis": 0,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 0,
+          "hadoop": 0,
+          "couchbase": 0
+        }
+      },
+      "importance": 4
+    },
+    "Q14_operational_comfort": {
+      "type": "single_select",
+      "weights": {
+        "sql_only_minimal_new_tooling": {
+          "mysql": 3,
+          "postgresql": 2,
+          "mssql": 1,
+          "mariadb": 2,
+          "mongodb": -1,
+          "redis": 0,
+          "cassandra": -2,
+          "scylladb": -2,
+          "opensearch": -1,
+          "elasticsearch": -1,
+          "hadoop": -2,
+          "couchbase": -1
+        },
+        "comfortable_nosql_new_query_model": {
+          "mysql": -1,
+          "postgresql": 0,
+          "mssql": -1,
+          "mariadb": -1,
+          "mongodb": 2,
+          "redis": 1,
+          "cassandra": 2,
+          "scylladb": 2,
+          "opensearch": 1,
+          "elasticsearch": 1,
+          "hadoop": 1,
+          "couchbase": 2
+        },
+        "want_max_managed_hand_holding": {
+          "mysql": 1,
+          "postgresql": 1,
+          "mssql": 1,
+          "mariadb": 1,
+          "mongodb": 1,
+          "redis": 1,
+          "cassandra": 0,
+          "scylladb": 0,
+          "opensearch": 0,
+          "elasticsearch": 2,
+          "hadoop": -1,
+          "couchbase": 1
+        }
+      },
+      "_note": "v1 treated this as display-only. Testing showed MySQL/PostgreSQL/MSSQL/MariaDB tie exactly on every core technical question in a generic OLTP scenario — this question is now scored specifically to break that tie on a real signal (team familiarity/ops simplicity) instead of leaving it to chance. Follow-up fix: sql_only_minimal_new_tooling previously scored MariaDB identically to MySQL (both 3) while every OTHER scored question in the whole questionnaire also ties or favors MariaDB over MySQL (MariaDB's ColumnStore/HTAP edge on Q1, identical Q2/Q9 wire-compatibility scores) — the combined effect made MySQL a mathematically dominated choice that could never be the #1 recommendation under ANY answer combination (confirmed by exhaustive audit: 0 wins out of 16,200 core scenarios, and MySQL's score was never even strictly greater than MariaDB's in any of them). Nudged MariaDB down to 2 here so MySQL keeps its edge in the one scenario that's genuinely its strongest real-world case — a team that wants zero new tooling and the single most ubiquitous, widest-tooling-support RDBMS — without taking anything away from MariaDB's own genuine strengths (HTAP/analytics, vendor-independent governance, MaxScale) elsewhere."
+    }
+  },
+  "substitution_groups": [
+    {
+      "group": "wide_column_realtime",
+      "members": [
+        "cassandra",
+        "scylladb"
+      ],
+      "note": "Simulated: ScyllaDB out-scores Cassandra on every technical axis in this matrix (it's engineered specifically to beat Cassandra's JVM/GC-based latency ceiling), so Cassandra will not win on tech score alone. Cassandra becomes the right recommendation when: budget posture is cost-sensitive (Cassandra has an OSS tier, ScyllaDB in this catalog is Enterprise-only), OR the ecosystem answer selects 'prefer_vendor_independent_governance' / plain CQL compatibility without needing Scylla's extra throughput."
+    },
+    {
+      "group": "search_analytics",
+      "members": [
+        "opensearch",
+        "elasticsearch"
+      ],
+      "note": "Simulated: identical technical scores in every tested scenario (18 vs 18) — these engines solve the same problem equally well. The only legitimate differentiators are budget (OpenSearch OSS vs Elasticsearch Enterprise-only in this catalog) and the compliance/support-SLA answer (Q10) or a stated need for Elastic's commercial ML/ELSER features."
+    }
+  ],
+  "conflict_rules": [
+    {
+      "id": "offline_sync_vs_massive_scale",
+      "when": {
+        "Q1_workload_shape": "mobile_edge_offline_sync"
+      },
+      "tension_with": {
+        "Q6_scale": "massive_pb_scale"
+      },
+      "message": "Offline-first mobile sync and petabyte-scale wide-column storage rarely belong on one engine. This usually means an edge-sync layer (Couchbase Mobile / Sync Gateway) in front of a separate backend store (Cassandra or ScyllaDB) for the bulk data — see the multi-database result instead of forcing a single pick."
+    },
+    {
+      "id": "strict_acid_vs_active_active",
+      "when": {
+        "Q4_consistency": "strict_acid"
+      },
+      "tension_with": {
+        "Q7_geo_availability": "multi_region_active_active"
+      },
+      "message": "Strict ACID transactions and multi-region active-active writes are in genuine tension (this is CAP theorem showing up in your answers) — true multi-master strong consistency is hard and expensive everywhere, not just on our platform. Expect a trade-off: either a single-writer region with fast failover, or relaxed consistency specifically on the actively-replicated portion of the data."
+    },
+    {
+      "id": "batch_etl_vs_sub_ms_latency",
+      "when": {
+        "Q1_workload_shape": "batch_etl_data_lake"
+      },
+      "tension_with": {
+        "Q5_latency": "sub_millisecond"
+      },
+      "message": "Batch/ETL processing and sub-millisecond live-query latency are different problems by nature. If both are genuinely true, you likely need Hadoop/Spark for the batch layer feeding a separate low-latency serving store (e.g. Redis or ScyllaDB) downstream — not one engine doing both."
+    }
+  ],
+  "multi_app_settings": {
+    "strong_fit_threshold": 3,
+    "consolidation_min_weight_per_component": 2,
+    "note": "strong_fit_threshold picks the best single engine per selected component (from Q1 weights). consolidation_min_weight_per_component is the bar a single engine's weight must clear on EVERY selected component before it's offered as a 'covers it all' consolidation alternative instead of a specialist stack."
+  },
+  "workload_gate": {
+    "question": "Q1_workload_shape",
+    "poor_fit_max_weight": 0,
+    "penalty": 12,
+    "hard_options": {
+      "batch_etl_data_lake": 40
+    },
+    "waived_by": [
+      {
+        "question": "Q9_ecosystem_compatibility",
+        "min_weight": 4
+      }
+    ],
+    "note": "An engine that is a poor fit (weight <= 0) for the described workload loses `penalty` points so it can't win on side features alone. A named compatibility need (Q9 weight >= 4 for that engine, e.g. DynamoDB API) is a hard requirement and waives it. `hard_options` are workloads that form their own category (batch / data lake): the penalty there is much larger and never waived, so the batch specialist always ranks first."
+  },
+  "result_settings": {
+    "top_n": 3,
+    "min_pct": 0,
+    "bands": [
+      {
+        "id": "great",
+        "min_pct": 75,
+        "label": "Great fit"
+      },
+      {
+        "id": "good",
+        "min_pct": 55,
+        "label": "Good fit"
+      },
+      {
+        "id": "possible",
+        "min_pct": 35,
+        "label": "Possible"
+      },
+      {
+        "id": "longshot",
+        "min_pct": 0,
+        "label": "Long shot"
+      }
+    ],
+    "note": "Always show top_n matches. bands turn the match % into a plain label. Raise min_pct only if you'd rather hide weak fits."
+  }
+}

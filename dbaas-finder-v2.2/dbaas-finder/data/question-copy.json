@@ -1,0 +1,367 @@
+{
+  "Q1_workload_shape": {
+    "title": "What is the primary workload?",
+    "help": "Choose the closest match.",
+    "multi_select": false,
+    "options": [
+      {
+        "id": "oltp_transactional",
+        "emoji": "🛒",
+        "label": "Transactional (OLTP)",
+        "hint": "Orders, payments, bookings, ERP"
+      },
+      {
+        "id": "content_catalog_flexible",
+        "emoji": "🗂️",
+        "label": "Content & catalogue",
+        "hint": "Products, profiles, CMS pages"
+      },
+      {
+        "id": "cache_session_realtime",
+        "emoji": "⚡",
+        "label": "Caching & sessions",
+        "hint": "Logins, carts, leaderboards"
+      },
+      {
+        "id": "search_logging_observability",
+        "emoji": "🔎",
+        "label": "Search & log analytics",
+        "hint": "Search box, logs, monitoring"
+      },
+      {
+        "id": "time_series_iot_high_write",
+        "emoji": "📡",
+        "label": "Time-series & IoT",
+        "hint": "Sensor, telemetry, event streams"
+      },
+      {
+        "id": "analytics_bi_dw",
+        "emoji": "📊",
+        "label": "Analytics & BI",
+        "hint": "Reports and dashboards"
+      },
+      {
+        "id": "batch_etl_data_lake",
+        "emoji": "🏞️",
+        "label": "Batch / data lake",
+        "hint": "Nightly ETL jobs, raw data"
+      },
+      {
+        "id": "mobile_edge_offline_sync",
+        "emoji": "📱",
+        "label": "Mobile & offline sync",
+        "hint": "Works offline, syncs later"
+      },
+      {
+        "id": "ai_rag_vector_core",
+        "emoji": "🤖",
+        "label": "AI & vector search",
+        "hint": "Chatbots (RAG), 'find similar'"
+      },
+      {
+        "id": "htap_hybrid_oltp_olap",
+        "emoji": "⚖️",
+        "label": "Hybrid (HTAP)",
+        "hint": "Transactions and reports together"
+      }
+    ]
+  },
+  "Q2_data_structure": {
+    "title": "What does your data look like?",
+    "help": "Storing PDFs, images or other files? Choose Files & media.",
+    "multi_select": false,
+    "options": [
+      {
+        "id": "structured_relational_joins",
+        "emoji": "🧮",
+        "label": "Relational tables",
+        "hint": "Rows and columns that link together"
+      },
+      {
+        "id": "semi_structured_json",
+        "emoji": "🧾",
+        "label": "JSON documents",
+        "hint": "Flexible records, fields can vary"
+      },
+      {
+        "id": "key_value",
+        "emoji": "🔑",
+        "label": "Key-value",
+        "hint": "Simple lookups by ID"
+      },
+      {
+        "id": "wide_column_sparse",
+        "emoji": "📚",
+        "label": "Wide-column",
+        "hint": "Huge tables: sensor rows, event history"
+      },
+      {
+        "id": "unstructured_text_logs",
+        "emoji": "📝",
+        "label": "Text & logs",
+        "hint": "Anything you search by words"
+      },
+      {
+        "id": "documents_files_media",
+        "emoji": "📎",
+        "label": "Files & media",
+        "hint": "PDFs, images, video (details and links)"
+      }
+    ]
+  },
+  "Q4_consistency": {
+    "title": "How consistent must the data be?",
+    "help": null,
+    "multi_select": false,
+    "options": [
+      {
+        "id": "strict_acid",
+        "emoji": "🎯",
+        "label": "Strict consistency (ACID)",
+        "hint": "Always exact: money, stock, bookings"
+      },
+      {
+        "id": "eventual_ok",
+        "emoji": "🌊",
+        "label": "Eventual consistency",
+        "hint": "Slightly behind is fine: likes, feeds, sensors"
+      },
+      {
+        "id": "mixed",
+        "emoji": "🎚️",
+        "label": "Mixed",
+        "hint": "Strict for some data, relaxed for the rest"
+      }
+    ]
+  },
+  "Q5_latency": {
+    "title": "What response time do you need?",
+    "help": null,
+    "multi_select": false,
+    "options": [
+      {
+        "id": "sub_millisecond",
+        "emoji": "🚀",
+        "label": "Sub-millisecond",
+        "hint": "Instant: caches, real-time bidding"
+      },
+      {
+        "id": "low_ms",
+        "emoji": "🏃",
+        "label": "Milliseconds",
+        "hint": "Normal speed for apps and websites"
+      },
+      {
+        "id": "seconds_batch_ok",
+        "emoji": "🐢",
+        "label": "Seconds or more",
+        "hint": "Fine for reports and batch jobs"
+      }
+    ]
+  },
+  "Q6_scale": {
+    "title": "How much data do you expect?",
+    "help": "A rough estimate for the next two years.",
+    "multi_select": false,
+    "options": [
+      {
+        "id": "small_under_100gb",
+        "emoji": "🌱",
+        "label": "Small",
+        "hint": "Up to 100 GB"
+      },
+      {
+        "id": "medium_few_tb",
+        "emoji": "🌿",
+        "label": "Medium",
+        "hint": "100 GB to a few TB"
+      },
+      {
+        "id": "large_multi_tb",
+        "emoji": "🌳",
+        "label": "Large",
+        "hint": "Tens of TB"
+      },
+      {
+        "id": "massive_pb_scale",
+        "emoji": "🏔️",
+        "label": "Massive",
+        "hint": "Hundreds of TB to petabytes"
+      }
+    ]
+  },
+  "Q7_geo_availability": {
+    "title": "What availability do you need?",
+    "help": null,
+    "multi_select": false,
+    "options": [
+      {
+        "id": "single_region_ha",
+        "emoji": "📍",
+        "label": "Single region (HA)",
+        "hint": "One site with automatic failover"
+      },
+      {
+        "id": "multi_region_failover",
+        "emoji": "🛟",
+        "label": "Multi-region failover (DR)",
+        "hint": "A standby site takes over"
+      },
+      {
+        "id": "multi_region_active_active",
+        "emoji": "🌍",
+        "label": "Multi-region active-active",
+        "hint": "Every region accepts writes"
+      }
+    ]
+  },
+  "Q8_vector_search": {
+    "title": "Do you need vector search?",
+    "help": "AI similarity search, used for chatbots (RAG) and recommendations.",
+    "multi_select": false,
+    "options": [
+      {
+        "id": "yes_core",
+        "emoji": "🧠",
+        "label": "Core requirement",
+        "hint": "The app is built around it"
+      },
+      {
+        "id": "yes_secondary",
+        "emoji": "✨",
+        "label": "Nice to have",
+        "hint": "A secondary feature"
+      },
+      {
+        "id": "no",
+        "emoji": "🙅",
+        "label": "Not needed",
+        "hint": "Or not sure yet"
+      }
+    ]
+  },
+  "Q9_ecosystem_compatibility": {
+    "title": "Any existing technology to stay compatible with?",
+    "help": "Select all that apply.",
+    "multi_select": true,
+    "options": [
+      {
+        "id": "oracle_pl_sql_compatibility_needed",
+        "emoji": "🏛️",
+        "label": "Oracle (PL/SQL)",
+        "hint": "Existing Oracle code to migrate"
+      },
+      {
+        "id": "mysql_wire_protocol_compatibility",
+        "emoji": "🐬",
+        "label": "MySQL",
+        "hint": "WordPress, PHP, MySQL apps"
+      },
+      {
+        "id": "microsoft_dotnet_ecosystem",
+        "emoji": "🪟",
+        "label": "Microsoft / .NET",
+        "hint": "SQL Server tools and skills"
+      },
+      {
+        "id": "cassandra_cql_compatibility",
+        "emoji": "👁️",
+        "label": "Apache Cassandra (CQL)",
+        "hint": "Existing Cassandra apps"
+      },
+      {
+        "id": "dynamodb_api_compatibility",
+        "emoji": "☁️",
+        "label": "Amazon DynamoDB",
+        "hint": "Existing DynamoDB apps"
+      },
+      {
+        "id": "prefer_vendor_independent_governance",
+        "emoji": "🤝",
+        "label": "Community-governed open source",
+        "hint": "No single-vendor control"
+      },
+      {
+        "id": "no_ecosystem_constraint",
+        "emoji": "🆕",
+        "label": "No constraint",
+        "hint": "Starting fresh"
+      }
+    ]
+  },
+  "Q10_compliance_edition_modifier": {
+    "title": "What are your security and compliance needs?",
+    "help": null,
+    "multi_select": false,
+    "options": [
+      {
+        "id": "standard",
+        "emoji": "🔒",
+        "label": "Standard security",
+        "hint": "Encryption and access control"
+      },
+      {
+        "id": "advanced_auditing",
+        "emoji": "🧾",
+        "label": "Advanced auditing",
+        "hint": "Audit trails, finer access control"
+      },
+      {
+        "id": "regulated_industry",
+        "emoji": "🏦",
+        "label": "Regulated industry",
+        "hint": "Banking, healthcare, government"
+      }
+    ]
+  },
+  "Q13_budget_modifier": {
+    "title": "What is your budget approach?",
+    "help": null,
+    "multi_select": false,
+    "options": [
+      {
+        "id": "cost_sensitive",
+        "emoji": "💰",
+        "label": "Cost-sensitive",
+        "hint": "Prefer free open-source editions"
+      },
+      {
+        "id": "balanced",
+        "emoji": "⚖️",
+        "label": "Balanced",
+        "hint": "Pay only for features that matter"
+      },
+      {
+        "id": "premium",
+        "emoji": "💎",
+        "label": "Premium",
+        "hint": "Enterprise features and support"
+      }
+    ]
+  },
+  "Q14_operational_comfort": {
+    "title": "What is your team's skill set?",
+    "help": null,
+    "multi_select": false,
+    "options": [
+      {
+        "id": "sql_only_minimal_new_tooling",
+        "emoji": "🧑‍💻",
+        "label": "SQL-focused",
+        "hint": "Prefer familiar SQL tools"
+      },
+      {
+        "id": "comfortable_nosql_new_query_model",
+        "emoji": "🧗",
+        "label": "Open to NoSQL",
+        "hint": "Happy to learn new query models"
+      },
+      {
+        "id": "want_max_managed_hand_holding",
+        "emoji": "🤲",
+        "label": "Fully managed preferred",
+        "hint": "Minimal hands-on administration"
+      }
+    ]
+  }
+}
